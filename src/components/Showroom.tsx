@@ -32,7 +32,14 @@ const showroomItemVariants = {
 
 export const Showroom: React.FC<ShowroomProps> = ({ onScheduleVisit }) => {
   return (
-    <section id="showroom" className="py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-[#121210] text-[#EAE7DF] overflow-hidden">
+    <motion.section
+      id="showroom"
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-70px', amount: 0.12 }}
+      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+      className="py-20 lg:py-28 px-4 sm:px-6 lg:px-12 bg-[#121210] text-[#EAE7DF] overflow-hidden scroll-mt-12"
+    >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         {/* Info Column */}
         <motion.div
@@ -138,6 +145,6 @@ export const Showroom: React.FC<ShowroomProps> = ({ onScheduleVisit }) => {
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };

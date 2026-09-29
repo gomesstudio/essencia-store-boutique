@@ -202,7 +202,14 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
   const categoriesList = ['Todos', 'Vestuário', 'Calçados', 'Acessórios', 'Perfumaria', 'Design & Casa'];
 
   return (
-    <section id="produtos" className="py-14 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 bg-[#F3EFEA]/40 border-t border-[#EAE7DF] overflow-hidden">
+    <motion.section
+      id="produtos"
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-70px', amount: 0.08 }}
+      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+      className="py-14 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 bg-[#F3EFEA]/40 border-t border-[#EAE7DF] overflow-hidden scroll-mt-12"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -483,7 +490,13 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
           </motion.div>
         ) : viewMode === 'carousel' ? (
           /* INNOVATIVE CAROUSEL TRACK */
-          <div className="relative">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
+          >
             <div
               ref={trackRef}
               onScroll={handleScroll}
@@ -653,14 +666,15 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
                 ))}
               </div>
             )}
-          </div>
+          </motion.div>
         ) : (
           /* EXPANDED GRID VIEW */
           <motion.div
             key={`${selectedCategory}-${sortBy}-${onlyWishlist}-${searchQuery}`}
             variants={gridContainerVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-40px' }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7"
           >
             {filtered.map((product, idx) => {
@@ -820,6 +834,6 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
           </a>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };

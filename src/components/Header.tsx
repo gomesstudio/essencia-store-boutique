@@ -176,7 +176,7 @@ export const Header: React.FC<HeaderProps> = ({
                 href="#contato"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Formulário de Contato
+                Contato & Atendimento
               </a>
             </div>
 
